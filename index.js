@@ -2,6 +2,7 @@
 // Views in circular order: front -> right -> back -> left -> front
 const views = ['FRONT', 'RIGHT', 'BACK', 'LEFT'];
 const INSIDE_VIEW = 'INSIDE';
+const insideViews = ['INSIDE_FRONT', 'INSIDE_RIGHT', 'INSIDE_BACK', 'INSIDE_LEFT'];
 
 // User-facing labels in Polish
 const viewLabels = {
@@ -9,7 +10,11 @@ const viewLabels = {
     'RIGHT': 'PRAWO',
     'BACK': 'TYŁ',
     'LEFT': 'LEWO',
-    'INSIDE': 'W ŚRODKU'
+    'INSIDE': 'W ŚRODKU',
+    'INSIDE_FRONT': 'W ŚRODKU - PRZÓD',
+    'INSIDE_RIGHT': 'W ŚRODKU - PRAWO',
+    'INSIDE_BACK': 'W ŚRODKU - TYŁ',
+    'INSIDE_LEFT': 'W ŚRODKU - LEWO'
 };
 
 // Image paths for each view (will fallback to label if image doesn't exist)
@@ -18,11 +23,16 @@ const viewImages = {
     'RIGHT': 'resources/wagon-outside-right.png',
     'BACK': 'resources/wagon-outside-back.png',
     'LEFT': 'resources/wagon-outside-left.png',
-    'INSIDE': 'resources/wagon-inside.png'
+    'INSIDE': 'resources/wagon-inside.png',
+    'INSIDE_FRONT': 'resources/wagon-inside-front.png',
+    'INSIDE_RIGHT': 'resources/wagon-inside-right.png',
+    'INSIDE_BACK': 'resources/wagon-inside-back.png',
+    'INSIDE_LEFT': 'resources/wagon-inside-left.png'
 };
 
 // ===== STATE =====
 let currentViewIndex = 0;
+let currentInsideViewIndex = 0;
 let isInside = false;
 
 // ===== DOM ELEMENTS =====
@@ -32,6 +42,8 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const enterBtn = document.getElementById('enter-btn');
 const exitBtn = document.getElementById('exit-btn');
+const insidePrevBtn = document.getElementById('inside-prev-btn');
+const insideNextBtn = document.getElementById('inside-next-btn');
 const insideHotspots = document.getElementById('inside-hotspots');
 const blinkOverlay = document.getElementById('blink-overlay');
 const blurOverlay = document.getElementById('blur-overlay');
@@ -100,19 +112,44 @@ function blinkTransition(onSwap) {
 }
 
 function rotateRight() {
-    const nextIndex = (currentViewIndex + 1) % views.length;
-    blinkTransition(() => showView(nextIndex));
+    if (isInside) {
+        rotateInsideRight();
+    } else {
+        const nextIndex = (currentViewIndex + 1) % views.length;
+        blinkTransition(() => showView(nextIndex));
+    }
 }
 
 function rotateLeft() {
-    const prevIndex = (currentViewIndex - 1 + views.length) % views.length;
-    blinkTransition(() => showView(prevIndex));
+    if (isInside) {
+        rotateInsideLeft();
+    } else {
+        const prevIndex = (currentViewIndex - 1 + views.length) % views.length;
+        blinkTransition(() => showView(prevIndex));
+    }
+}
+
+function rotateInsideRight() {
+    const nextIndex = (currentInsideViewIndex + 1) % insideViews.length;
+    blinkTransition(() => showInsideView(nextIndex));
+}
+
+function rotateInsideLeft() {
+    const prevIndex = (currentInsideViewIndex - 1 + insideViews.length) % insideViews.length;
+    blinkTransition(() => showInsideView(prevIndex));
+}
+
+function showInsideView(index) {
+    const viewName = insideViews[index];
+    currentInsideViewIndex = index;
+    loadViewImage(viewName);
 }
 
 function enterWagon() {
     blinkTransition(() => {
         isInside = true;
-        loadViewImage(INSIDE_VIEW);
+        // Start with simple INSIDE view instead of directional
+        loadViewImage('INSIDE');
         updateArrowsVisibility();
     });
 }
@@ -130,10 +167,14 @@ function updateArrowsVisibility() {
     hideArrow(nextBtn);
     hideArrow(enterBtn);
     hideArrow(exitBtn);
+    hideArrow(insidePrevBtn);
+    hideArrow(insideNextBtn);
     
     if (isInside) {
-        // Inside: only show exit (down) arrow
+        // Inside: show exit (down) arrow and inside rotation arrows
         showArrow(exitBtn);
+        showArrow(insidePrevBtn);
+        showArrow(insideNextBtn);
     } else {
         // Outside: show left/right arrows
         showArrow(prevBtn);
@@ -171,6 +212,8 @@ nextBtn.addEventListener('click', rotateRight);
 prevBtn.addEventListener('click', rotateLeft);
 enterBtn.addEventListener('click', enterWagon);
 exitBtn.addEventListener('click', exitWagon);
+insideNextBtn.addEventListener('click', rotateInsideRight);
+insidePrevBtn.addEventListener('click', rotateInsideLeft);
 
 // Start screen click handler
 if (startScreen) {

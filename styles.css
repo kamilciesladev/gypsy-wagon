@@ -267,19 +267,33 @@ body {
 }
 
 .arrow-left::before {
-    transform: rotate(180deg);
+    background-image: url('resources/arrow-left.png');
+    transform: none;
 }
 
 .arrow-left:hover::before {
-    transform: rotate(180deg) scale(1.1);
+    transform: scale(1.1);
 }
 
 .arrow-left:active::before {
-    transform: rotate(180deg) scale(0.95);
+    transform: scale(0.95);
 }
 
 .arrow-right {
     right: var(--arrow-side-offset);
+}
+
+.arrow-right::before {
+    background-image: url('resources/arrow-right.png');
+    transform: none;
+}
+
+.arrow-right:hover::before {
+    transform: scale(1.1);
+}
+
+.arrow-right:active::before {
+    transform: scale(0.95);
 }
 
 .arrow-up {
@@ -289,7 +303,10 @@ body {
 }
 
 .arrow-up::before {
-    transform: rotate(-90deg);
+    background-image: url('resources/arrow-up.png');
+    transform: none;
+    width: 100%;
+    height: 100%;
 }
 
 .arrow-up:hover {
@@ -297,7 +314,7 @@ body {
 }
 
 .arrow-up:hover::before {
-    transform: rotate(-90deg) scale(1.1);
+    transform: scale(1.1);
 }
 
 .arrow-up:active {
@@ -305,7 +322,7 @@ body {
 }
 
 .arrow-up:active::before {
-    transform: rotate(-90deg) scale(0.95);
+    transform: scale(0.95);
 }
 
 .arrow-down {
@@ -315,7 +332,8 @@ body {
 }
 
 .arrow-down::before {
-    transform: rotate(90deg);
+    background-image: url('resources/arrow-down.png');
+    transform: none;
 }
 
 .arrow-down:hover {
@@ -323,7 +341,7 @@ body {
 }
 
 .arrow-down:hover::before {
-    transform: rotate(90deg) scale(1.1);
+    transform: scale(1.1);
 }
 
 .arrow-down:active {
@@ -331,7 +349,7 @@ body {
 }
 
 .arrow-down:active::before {
-    transform: rotate(90deg) scale(0.95);
+    transform: scale(0.95);
 }
 
 /* ===== VISIBILITY STATES ===== */
@@ -341,6 +359,52 @@ body {
 
 .arrow.hidden {
     display: none !important;
+}
+
+/* Inside arrows - initially hidden */
+.inside-arrow {
+    display: none;
+}
+
+.inside-arrow.visible {
+    display: flex !important;
+}
+
+/* Inside arrow directions */
+.inside-arrow-left {
+    left: var(--arrow-side-offset);
+}
+
+.inside-arrow-left::before {
+    background-image: url('resources/arrow-left.png');
+}
+
+.inside-arrow-right {
+    right: var(--arrow-side-offset);
+}
+
+.inside-arrow-right::before {
+    background-image: url('resources/arrow-right.png');
+}
+
+.inside-arrow-up {
+    top: var(--arrow-bottom);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.inside-arrow-up::before {
+    background-image: url('resources/arrow-up.png');
+}
+
+.inside-arrow-down {
+    bottom: var(--arrow-bottom);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.inside-arrow-down::before {
+    background-image: url('resources/arrow-down.png');
 }
 
 /* ===== HOVER TOOLTIPS ===== */
