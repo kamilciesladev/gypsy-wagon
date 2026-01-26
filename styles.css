@@ -1,0 +1,426 @@
+/* ===== ADJUSTABLE VARIABLES ===== */
+:root {
+    --arrow-size: 150px;
+    --arrow-bottom: 20px;
+    --arrow-side-offset: 20px;
+    --arrow-font-size: 48px;
+    --bg-color-1: #1d022c;
+    --bg-color-2: #074044;
+    --bg-color-3: #2b0428;
+    --bg-color-4: #2f3204;
+}
+
+/* ===== BASE STYLES ===== */
+body {
+    margin: 0;  
+    padding: 0;
+    background: radial-gradient(ellipse at 30% 40%, var(--bg-color-1) 0%, var(--bg-color-3) 35%, var(--bg-color-4) 60%, var(--bg-color-2) 100%);
+    background-size: 200% 200%;
+    animation: gradientMove 10s ease-in-out infinite;
+    overflow: hidden;
+    font-family: "Updock", cursive;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 70% 30%;
+    }
+    50% {
+        background-position: 100% 80%;
+    }
+    75% {
+        background-position: 30% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.blur-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 25;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+}
+
+.blur-overlay.is-blurring {
+    animation: blur-vision 0.6s ease-in-out;
+}
+
+@keyframes blur-vision {
+    0% {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    45% {
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+    }
+    55% {
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+    }
+    100% {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+}
+
+.blink-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 30;
+    opacity: 0;
+}
+
+.blink-overlay::before,
+.blink-overlay::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #000000;
+    border-radius: 0;
+}
+
+.blink-overlay::before {
+    top: 0;
+    -webkit-mask-image: radial-gradient(ellipse 200% 80% at 50% 100%, transparent 0%, #000 40%, #000 100%);
+    mask-image: radial-gradient(ellipse 200% 80% at 50% 100%, transparent 0%, #000 40%, #000 100%);
+}
+
+.blink-overlay::after {
+    bottom: 0;
+    -webkit-mask-image: radial-gradient(ellipse 200% 80% at 50% 0%, transparent 0%, #000 40%, #000 100%);
+    mask-image: radial-gradient(ellipse 200% 80% at 50% 0%, transparent 0%, #000 40%, #000 100%);
+}
+
+.blink-overlay.is-blinking {
+    opacity: 1;
+}
+
+.blink-overlay.is-blinking::before {
+    animation: eyelid-top 0.6s ease-in-out;
+}
+
+.blink-overlay.is-blinking::after {
+    animation: eyelid-bottom 0.6s ease-in-out;
+}
+
+@keyframes eyelid-top {
+    0% {
+        height: 0;
+    }
+    45% {
+        height: 60vh;
+    }
+    55% {
+        height: 60vh;
+    }
+    100% {
+        height: 0;
+    }
+}
+
+@keyframes eyelid-bottom {
+    0% {
+        height: 0;
+    }
+    45% {
+        height: 60vh;
+    }
+    55% {
+        height: 60vh;
+    }
+    100% {
+        height: 0;
+    }
+}
+
+.start-screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    cursor: pointer;
+    transition: all 1s ease-out;
+}
+
+.start-screen.hidden {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    pointer-events: none;
+}
+
+.start-title {
+    font-size: clamp(60px, 15vw, 200px);
+    color: #ffd700;
+    text-align: center;
+    margin: 0;
+    padding: 40px;
+    text-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 0.5),
+        0 0 60px rgba(255, 215, 0, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite;
+    user-select: none;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        text-shadow: 
+            0 0 20px rgba(255, 215, 0, 0.8),
+            0 0 40px rgba(255, 215, 0, 0.5),
+            0 0 60px rgba(255, 215, 0, 0.3);
+        transform: scale(1);
+    }
+    50% {
+        text-shadow: 
+            0 0 30px rgba(255, 215, 0, 1),
+            0 0 60px rgba(255, 215, 0, 0.7),
+            0 0 90px rgba(255, 215, 0, 0.5);
+        transform: scale(1.02);
+    }
+}
+
+.view-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.view-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.view-image.loaded {
+    display: block;
+}
+
+.view-label {
+    font-size: 120px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    user-select: none;
+    position: absolute;
+}
+
+/* ===== ARROW BUTTONS ===== */
+.arrow {
+    position: fixed;
+    bottom: var(--arrow-bottom);
+    width: var(--arrow-size);
+    height: var(--arrow-size);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.arrow::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('resources/arrow-right.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.arrow:hover::before {
+    transform: scale(1.1);
+}
+
+.arrow:active::before {
+    transform: scale(0.95);
+}
+
+.arrow-left {
+    left: var(--arrow-side-offset);
+}
+
+.arrow-left::before {
+    transform: rotate(180deg);
+}
+
+.arrow-left:hover::before {
+    transform: rotate(180deg) scale(1.1);
+}
+
+.arrow-left:active::before {
+    transform: rotate(180deg) scale(0.95);
+}
+
+.arrow-right {
+    right: var(--arrow-side-offset);
+}
+
+.arrow-up {
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+.arrow-up::before {
+    transform: rotate(-90deg);
+}
+
+.arrow-up:hover {
+    transform: translateX(-50%);
+}
+
+.arrow-up:hover::before {
+    transform: rotate(-90deg) scale(1.1);
+}
+
+.arrow-up:active {
+    transform: translateX(-50%);
+}
+
+.arrow-up:active::before {
+    transform: rotate(-90deg) scale(0.95);
+}
+
+.arrow-down {
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+}
+
+.arrow-down::before {
+    transform: rotate(90deg);
+}
+
+.arrow-down:hover {
+    transform: translateX(-50%);
+}
+
+.arrow-down:hover::before {
+    transform: rotate(90deg) scale(1.1);
+}
+
+.arrow-down:active {
+    transform: translateX(-50%);
+}
+
+.arrow-down:active::before {
+    transform: rotate(90deg) scale(0.95);
+}
+
+/* ===== VISIBILITY STATES ===== */
+.arrow.visible {
+    display: flex !important;
+}
+
+.arrow.hidden {
+    display: none !important;
+}
+
+/* ===== HOVER TOOLTIPS ===== */
+.arrow::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 15px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1a0a2e;
+    color: #ffd700;
+    padding: 10px 20px;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    font-family: "Updock", cursive;
+    font-size: 24px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.arrow:hover::after {
+    opacity: 1;
+}
+
+/* ===== INSIDE HOTSPOTS ===== */
+.inside-hotspots {
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+.inside-hotspots.visible {
+    display: block;
+}
+
+.hotspot {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 215, 0, 0.6);
+    background-color: rgba(26, 2, 44, 0.8);
+    color: #ffd700;
+    font-family: "Updock", cursive;
+    font-size: 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: auto;
+    transform: translate(var(--tx, 0), var(--ty, 0));
+}
+
+.hotspot:hover {
+    transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.08);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.hotspot--top {
+    top: 15%;
+    left: 50%;
+    --tx: -50%;
+    --ty: -50%;
+}
+
+.hotspot--left {
+    bottom: 20%;
+    left: 25%;
+    --tx: -50%;
+    --ty: 50%;
+}
+
+.hotspot--right {
+    bottom: 20%;
+    right: 25%;
+    --tx: 50%;
+    --ty: 50%;
+}

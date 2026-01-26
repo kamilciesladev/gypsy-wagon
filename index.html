@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gypsy wagon</title>
+    
+    <link rel="stylesheet" href="font.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="start-screen" class="start-screen">
+        <h1 class="start-title">Rozpocznij zwiedzanie</h1>
+    </div>
+    
+    <div id="blink-overlay" class="blink-overlay" aria-hidden="true"></div>
+    <div id="blur-overlay" class="blur-overlay" aria-hidden="true"></div>
+    <div class="view-container">
+        <img id="view-image" class="view-image" src="" alt="Wagon view">
+        <div id="view-label" class="view-label updock-regular"></div>
+        
+        <div class="inside-hotspots" id="inside-hotspots">
+            <button class="hotspot hotspot--top" type="button">Lampa Balladyna</button>
+            <button class="hotspot hotspot--left" type="button">Pufująca pufa</button>
+            <button class="hotspot hotspot--right" type="button">Fotel novotel</button>
+        </div>
+    </div>
+    
+    <button class="arrow arrow-left" id="prev-btn" data-tooltip="Idź w lewo" aria-label="Rotate left"></button>
+    
+    <button class="arrow arrow-right" id="next-btn" data-tooltip="Idź w prawo" aria-label="Rotate right"></button>
+    
+    <button class="arrow arrow-up" id="enter-btn" data-tooltip="Wejdź do środka" aria-label="Enter wagon"></button>
+    
+    <button class="arrow arrow-down" id="exit-btn" data-tooltip="Wyjdź na zewnątrz" aria-label="Exit wagon"></button>
+    
+    <script src="index.js"></script>
+</body>
+</html>
