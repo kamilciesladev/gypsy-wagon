@@ -15,15 +15,14 @@
     
     <div id="blink-overlay" class="blink-overlay" aria-hidden="true"></div>
     <div id="blur-overlay" class="blur-overlay" aria-hidden="true"></div>
+    <div id="subtitle-overlay" class="subtitle-overlay"></div>
     <div class="view-container">
         <img id="view-image" class="view-image" src="" alt="Wagon view">
         <div id="view-label" class="view-label updock-regular"></div>
         
-        <!-- <div class="inside-hotspots" id="inside-hotspots">
-            <button class="hotspot hotspot--top" type="button">Lampa Balladyna</button>
-            <button class="hotspot hotspot--left" type="button">Pufująca pufa</button>
-            <button class="hotspot hotspot--right" type="button">Fotel novotel</button>
-        </div> -->
+        <div class="inside-hotspots" id="inside-hotspots">
+            <button class="hotspot hotspot--left" id="pufa-hotspot" type="button">Pufująca pufa</button>
+        </div>
     </div>
     
     <button class="arrow arrow-left" id="prev-btn" data-tooltip="Idź w lewo" aria-label="Rotate left"></button>
@@ -42,6 +41,8 @@
     <button class="arrow inside-arrow inside-arrow-up" id="inside-up-btn" data-tooltip="Patrz w górę" aria-label="Look up"></button>
     
     <button class="arrow inside-arrow inside-arrow-down" id="inside-down-btn" data-tooltip="Patrz w dół" aria-label="Look down"></button>
+    
+    <audio id="picture1-audio" src="resources/audio/picture1/picture.oga" preload="auto"></audio>
     
     <script src="index.js"></script>
 </body>

@@ -215,6 +215,36 @@ exitBtn.addEventListener('click', exitWagon);
 insideNextBtn.addEventListener('click', rotateInsideRight);
 insidePrevBtn.addEventListener('click', rotateInsideLeft);
 
+// Hotspot event listeners
+const pufaHotspot = document.getElementById('pufa-hotspot');
+const picture1Audio = document.getElementById('picture1-audio');
+const subtitleOverlay = document.getElementById('subtitle-overlay');
+
+// Subtitle text
+const picture1Subtitle = "Wierzę, że dwa te tak na pozór sprzeczne stany, jak sen i jawa, stopią się kiedyś w rzeczywistość absolutną, czy jeśli kto woli w nadrzeczywistość.";
+
+if (pufaHotspot && picture1Audio && subtitleOverlay) {
+    pufaHotspot.addEventListener('click', () => {
+        // Reset audio to beginning and play
+        picture1Audio.currentTime = 0;
+        picture1Audio.play();
+        
+        // Show subtitle
+        subtitleOverlay.textContent = picture1Subtitle;
+        subtitleOverlay.classList.add('visible');
+    });
+    
+    // Hide subtitle when audio ends
+    picture1Audio.addEventListener('ended', () => {
+        subtitleOverlay.classList.remove('visible');
+    });
+    
+    // Also hide subtitle if audio is paused
+    picture1Audio.addEventListener('pause', () => {
+        subtitleOverlay.classList.remove('visible');
+    });
+}
+
 // Start screen click handler
 if (startScreen) {
     startScreen.addEventListener('click', () => {

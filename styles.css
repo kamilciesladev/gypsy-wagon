@@ -71,6 +71,29 @@ body {
     }
 }
 
+.subtitle-overlay {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    max-width: 80%;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+    line-height: 1.6;
+}
+
+.subtitle-overlay.visible {
+    opacity: 1;
+}
+
 .blink-overlay {
     position: fixed;
     inset: 0;
