@@ -231,6 +231,10 @@ const picture3Subtitle = "Wyobraźnia jest jedynym kluczem, który otwiera drzwi
 
 if (pufaHotspot && picture1Audio && subtitleOverlay) {
     pufaHotspot.addEventListener('click', () => {
+        // Stop all other audio
+        if (picture2Audio) picture2Audio.pause();
+        if (picture3Audio) picture3Audio.pause();
+        
         // Reset audio to beginning and play
         picture1Audio.currentTime = 0;
         picture1Audio.play();
@@ -253,6 +257,10 @@ if (pufaHotspot && picture1Audio && subtitleOverlay) {
 
 if (picture2Hotspot && picture2Audio && subtitleOverlay) {
     picture2Hotspot.addEventListener('click', () => {
+        // Stop all other audio
+        if (picture1Audio) picture1Audio.pause();
+        if (picture3Audio) picture3Audio.pause();
+        
         // Reset audio to beginning and play
         picture2Audio.currentTime = 0;
         picture2Audio.play();
@@ -275,6 +283,10 @@ if (picture2Hotspot && picture2Audio && subtitleOverlay) {
 
 if (picture3Hotspot && picture3Audio && subtitleOverlay) {
     picture3Hotspot.addEventListener('click', () => {
+        // Stop all other audio
+        if (picture1Audio) picture1Audio.pause();
+        if (picture2Audio) picture2Audio.pause();
+        
         // Reset audio to beginning and play
         picture3Audio.currentTime = 0;
         picture3Audio.play();
