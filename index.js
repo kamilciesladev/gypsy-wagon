@@ -217,14 +217,24 @@ insidePrevBtn.addEventListener('click', rotateInsideLeft);
 
 // Hotspot event listeners
 const pufaHotspot = document.getElementById('pufa-hotspot');
+const picture2Hotspot = document.getElementById('picture2-hotspot');
+const picture3Hotspot = document.getElementById('picture3-hotspot');
 const picture1Audio = document.getElementById('picture1-audio');
+const picture2Audio = document.getElementById('picture2-audio');
+const picture3Audio = document.getElementById('picture3-audio');
 const subtitleOverlay = document.getElementById('subtitle-overlay');
 
 // Subtitle text
 const picture1Subtitle = "Wierzę, że dwa te tak na pozór sprzeczne stany, jak sen i jawa, stopią się kiedyś w rzeczywistość absolutną, czy jeśli kto woli w nadrzeczywistość.";
+const picture2Subtitle = "Sztuka jest zwierciadłem, które odbija tego, kto w nie patrzy, a nie życie.";
+const picture3Subtitle = "Wyobraźnia jest jedynym kluczem, który otwiera drzwi do królestwa niemożliwego.";
 
 if (pufaHotspot && picture1Audio && subtitleOverlay) {
     pufaHotspot.addEventListener('click', () => {
+        // Stop all other audio
+        if (picture2Audio) picture2Audio.pause();
+        if (picture3Audio) picture3Audio.pause();
+        
         // Reset audio to beginning and play
         picture1Audio.currentTime = 0;
         picture1Audio.play();
@@ -241,6 +251,58 @@ if (pufaHotspot && picture1Audio && subtitleOverlay) {
     
     // Also hide subtitle if audio is paused
     picture1Audio.addEventListener('pause', () => {
+        subtitleOverlay.classList.remove('visible');
+    });
+}
+
+if (picture2Hotspot && picture2Audio && subtitleOverlay) {
+    picture2Hotspot.addEventListener('click', () => {
+        // Stop all other audio
+        if (picture1Audio) picture1Audio.pause();
+        if (picture3Audio) picture3Audio.pause();
+        
+        // Reset audio to beginning and play
+        picture2Audio.currentTime = 0;
+        picture2Audio.play();
+        
+        // Show subtitle
+        subtitleOverlay.textContent = picture2Subtitle;
+        subtitleOverlay.classList.add('visible');
+    });
+    
+    // Hide subtitle when audio ends
+    picture2Audio.addEventListener('ended', () => {
+        subtitleOverlay.classList.remove('visible');
+    });
+    
+    // Also hide subtitle if audio is paused
+    picture2Audio.addEventListener('pause', () => {
+        subtitleOverlay.classList.remove('visible');
+    });
+}
+
+if (picture3Hotspot && picture3Audio && subtitleOverlay) {
+    picture3Hotspot.addEventListener('click', () => {
+        // Stop all other audio
+        if (picture1Audio) picture1Audio.pause();
+        if (picture2Audio) picture2Audio.pause();
+        
+        // Reset audio to beginning and play
+        picture3Audio.currentTime = 0;
+        picture3Audio.play();
+        
+        // Show subtitle
+        subtitleOverlay.textContent = picture3Subtitle;
+        subtitleOverlay.classList.add('visible');
+    });
+    
+    // Hide subtitle when audio ends
+    picture3Audio.addEventListener('ended', () => {
+        subtitleOverlay.classList.remove('visible');
+    });
+    
+    // Also hide subtitle if audio is paused
+    picture3Audio.addEventListener('pause', () => {
         subtitleOverlay.classList.remove('visible');
     });
 }
