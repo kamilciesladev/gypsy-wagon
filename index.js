@@ -1,37 +1,38 @@
 // ===== CONFIGURATION =====
 // Views in circular order: front -> right -> left -> front
 const views = ['FRONT', 'RIGHT', 'LEFT'];
-const INSIDE_VIEW = 'INSIDE';
 const insideViews = ['INSIDE_FRONT', 'INSIDE_RIGHT', 'INSIDE_BACK', 'INSIDE_LEFT'];
+const PICTURE_CLOSE_VIEW = 'PICTURE_CLOSE';
 
 // User-facing labels in Polish
 const viewLabels = {
     'FRONT': 'PRZÓD',
     'RIGHT': 'PRAWO',
     'LEFT': 'LEWO',
-    'INSIDE': 'W ŚRODKU',
     'INSIDE_FRONT': 'W ŚRODKU - PRZÓD',
     'INSIDE_RIGHT': 'W ŚRODKU - PRAWO',
     'INSIDE_BACK': 'W ŚRODKU - TYŁ',
-    'INSIDE_LEFT': 'W ŚRODKU - LEWO'
+    'INSIDE_LEFT': 'W ŚRODKU - LEWO',
+    'PICTURE_CLOSE': 'ZBLIŻENIE OBRAZU'
 };
 
 // Image paths for each view (will fallback to label if image doesn't exist)
 const viewImages = {
-    'FRONT': 'resources/wagon-outside-front.png',
-    'RIGHT': 'resources/wagon-outside-right.png',
-    'LEFT': 'resources/wagon-outside-left.png',
-    'INSIDE': 'resources/wagon-inside.png',
-    'INSIDE_FRONT': 'resources/wagon-inside-front.png',
-    'INSIDE_RIGHT': 'resources/wagon-inside-right.png',
-    'INSIDE_BACK': 'resources/wagon-inside-back.png',
-    'INSIDE_LEFT': 'resources/wagon-inside-left.png'
+    'FRONT': 'resources/images/wagon-outside/wagon-outside-front.png',
+    'RIGHT': 'resources/images/wagon-outside/wagon-outside-right.png',
+    'LEFT': 'resources/images/wagon-outside/wagon-outside-left.png',
+    'INSIDE_FRONT': 'resources/images/wagon-inside/front-view.png',
+    'INSIDE_RIGHT': 'resources/images/wagon-inside/right-view.png',
+    'INSIDE_BACK': 'resources/images/wagon-inside/back-view.png',
+    'INSIDE_LEFT': 'resources/images/wagon-inside/left-view.png',
+    'PICTURE_CLOSE': 'resources/images/wagon-inside/items-inside/picture-close.png'
 };
 
 // ===== STATE =====
 let currentViewIndex = 0;
 let currentInsideViewIndex = 0;
 let isInside = false;
+let isPictureClose = false;
 
 // ===== DOM ELEMENTS =====
 const viewImage = document.getElementById('view-image');
@@ -42,6 +43,8 @@ const enterBtn = document.getElementById('enter-btn');
 const exitBtn = document.getElementById('exit-btn');
 const insidePrevBtn = document.getElementById('inside-prev-btn');
 const insideNextBtn = document.getElementById('inside-next-btn');
+const insideUpBtn = document.getElementById('inside-up-btn');
+const insideDownBtn = document.getElementById('inside-down-btn');
 const insideHotspots = document.getElementById('inside-hotspots');
 const blinkOverlay = document.getElementById('blink-overlay');
 const blurOverlay = document.getElementById('blur-overlay');
@@ -141,13 +144,14 @@ function showInsideView(index) {
     const viewName = insideViews[index];
     currentInsideViewIndex = index;
     loadViewImage(viewName);
+    updateArrowsVisibility();
 }
 
 function enterWagon() {
     blinkTransition(() => {
         isInside = true;
-        // Start with simple INSIDE view instead of directional
-        loadViewImage('INSIDE');
+        currentInsideViewIndex = 0; // Start with INSIDE_FRONT
+        showInsideView(0);
         updateArrowsVisibility();
     });
 }
@@ -155,7 +159,23 @@ function enterWagon() {
 function exitWagon() {
     blinkTransition(() => {
         isInside = false;
+        isPictureClose = false;
         showView(0); // Return to FRONT view
+    });
+}
+
+function showPictureClose() {
+    blinkTransition(() => {
+        isPictureClose = true;
+        loadViewImage(PICTURE_CLOSE_VIEW);
+        updateArrowsVisibility();
+    });
+}
+
+function exitPictureClose() {
+    blinkTransition(() => {
+        isPictureClose = false;
+        showInsideView(currentInsideViewIndex); // Return to current inside view
     });
 }
 
@@ -167,12 +187,21 @@ function updateArrowsVisibility() {
     hideArrow(exitBtn);
     hideArrow(insidePrevBtn);
     hideArrow(insideNextBtn);
+    hideArrow(insideUpBtn);
+    hideArrow(insideDownBtn);
     
-    if (isInside) {
-        // Inside: show exit (down) arrow and inside rotation arrows
-        showArrow(exitBtn);
+    if (isPictureClose) {
+        // In picture close view: only show down arrow to go back
+        showArrow(insideDownBtn);
+    } else if (isInside) {
+        // Inside: show inside rotation arrows
         showArrow(insidePrevBtn);
         showArrow(insideNextBtn);
+        // Show exit (down) arrow only on INSIDE_BACK view (index 2)
+        if (currentInsideViewIndex === 2) {
+            showArrow(exitBtn);
+        }
+        // insideUpBtn remains hidden except in picture close
     } else {
         // Outside: show left/right arrows
         showArrow(prevBtn);
@@ -184,7 +213,7 @@ function updateArrowsVisibility() {
         }
     }
     
-    toggleInsideHotspots(isInside);
+    toggleInsideHotspots(isInside && !isPictureClose);
 }
 
 function toggleInsideHotspots(visible) {
@@ -192,6 +221,13 @@ function toggleInsideHotspots(visible) {
         return;
     }
     insideHotspots.classList.toggle('visible', visible);
+    
+    // Show/hide specific hotspots based on current view
+    const pictureHotspot = document.getElementById('picture-hotspot');
+    if (pictureHotspot && visible) {
+        // Only show picture hotspot on INSIDE_FRONT view
+        pictureHotspot.style.display = (currentInsideViewIndex === 0) ? 'flex' : 'none';
+    }
 }
 
 // Helper functions for clear state management
@@ -212,36 +248,45 @@ enterBtn.addEventListener('click', enterWagon);
 exitBtn.addEventListener('click', exitWagon);
 insideNextBtn.addEventListener('click', rotateInsideRight);
 insidePrevBtn.addEventListener('click', rotateInsideLeft);
+insideDownBtn.addEventListener('click', exitPictureClose);
 
-// Hotspot event listeners
-const pufaHotspot = document.getElementById('pufa-hotspot');
+// Picture hotspot event listener
+const pictureHotspot = document.getElementById('picture-hotspot');
 const picture1Audio = document.getElementById('picture1-audio');
 const subtitleOverlay = document.getElementById('subtitle-overlay');
 
 // Subtitle text
 const picture1Subtitle = "Wierzę, że dwa te tak na pozór sprzeczne stany, jak sen i jawa, stopią się kiedyś w rzeczywistość absolutną, czy jeśli kto woli w nadrzeczywistość.";
 
-if (pufaHotspot && picture1Audio && subtitleOverlay) {
-    pufaHotspot.addEventListener('click', () => {
-        // Reset audio to beginning and play
-        picture1Audio.currentTime = 0;
-        picture1Audio.play();
+if (pictureHotspot) {
+    pictureHotspot.addEventListener('click', () => {
+        // Play audio
+        if (picture1Audio) {
+            picture1Audio.currentTime = 0;
+            picture1Audio.play();
+        }
         
-        // Show subtitle
-        subtitleOverlay.textContent = picture1Subtitle;
-        subtitleOverlay.classList.add('visible');
-    });
-    
-    // Hide subtitle when audio ends
-    picture1Audio.addEventListener('ended', () => {
-        subtitleOverlay.classList.remove('visible');
-    });
-    
-    // Also hide subtitle if audio is paused
-    picture1Audio.addEventListener('pause', () => {
-        subtitleOverlay.classList.remove('visible');
+        // Subtitles disabled for now
+        // if (subtitleOverlay) {
+        //     subtitleOverlay.textContent = picture1Subtitle;
+        //     subtitleOverlay.classList.add('visible');
+        // }
+        
+        // Then show the picture close-up
+        showPictureClose();
     });
 }
+
+// Hide subtitle when audio ends (disabled for now)
+// if (picture1Audio && subtitleOverlay) {
+//     picture1Audio.addEventListener('ended', () => {
+//         subtitleOverlay.classList.remove('visible');
+//     });
+//     
+//     picture1Audio.addEventListener('pause', () => {
+//         subtitleOverlay.classList.remove('visible');
+//     });
+// }
 
 // Start screen click handler
 if (startScreen) {
@@ -254,4 +299,4 @@ if (startScreen) {
 }
 
 // ===== INITIALIZATION =====
-showView(2); // Start from LEFT view (index 2)
+showView(1); // Start from RIGHT view (index 1)
