@@ -1,6 +1,6 @@
 // ===== CONFIGURATION =====
-// Views in circular order: front -> right -> back -> left -> front
-const views = ['FRONT', 'RIGHT', 'BACK', 'LEFT'];
+// Views in circular order: front -> right -> left -> front
+const views = ['FRONT', 'RIGHT', 'LEFT'];
 const INSIDE_VIEW = 'INSIDE';
 const insideViews = ['INSIDE_FRONT', 'INSIDE_RIGHT', 'INSIDE_BACK', 'INSIDE_LEFT'];
 
@@ -8,7 +8,6 @@ const insideViews = ['INSIDE_FRONT', 'INSIDE_RIGHT', 'INSIDE_BACK', 'INSIDE_LEFT
 const viewLabels = {
     'FRONT': 'PRZÓD',
     'RIGHT': 'PRAWO',
-    'BACK': 'TYŁ',
     'LEFT': 'LEWO',
     'INSIDE': 'W ŚRODKU',
     'INSIDE_FRONT': 'W ŚRODKU - PRZÓD',
@@ -21,7 +20,6 @@ const viewLabels = {
 const viewImages = {
     'FRONT': 'resources/wagon-outside-front.png',
     'RIGHT': 'resources/wagon-outside-right.png',
-    'BACK': 'resources/wagon-outside-back.png',
     'LEFT': 'resources/wagon-outside-left.png',
     'INSIDE': 'resources/wagon-inside.png',
     'INSIDE_FRONT': 'resources/wagon-inside-front.png',
@@ -256,4 +254,4 @@ if (startScreen) {
 }
 
 // ===== INITIALIZATION =====
-showView(3); // Start from LEFT view (index 3)
+showView(2); // Start from LEFT view (index 2)

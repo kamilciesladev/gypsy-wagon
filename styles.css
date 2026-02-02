@@ -18,7 +18,7 @@ body {
     background-size: 200% 200%;
     animation: gradientMove 10s ease-in-out infinite;
     overflow: hidden;
-    font-family: "Updock", cursive;
+    font-family: "Overbite", sans-serif;
 }
 
 @keyframes gradientMove {
@@ -174,17 +174,13 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 100;
-    background: transparent;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: url('resources/start-page.png') center/cover no-repeat;
     cursor: pointer;
     transition: all 1s ease-out;
 }
 
 .start-screen.hidden {
     opacity: 0;
-    backdrop-filter: blur(0px);
-    -webkit-backdrop-filter: blur(0px);
     pointer-events: none;
 }
 
@@ -443,7 +439,7 @@ body {
     border-radius: 12px;
     border: 2px solid rgba(255, 215, 0, 0.4);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    font-family: "Updock", cursive;
+    font-family: "Overbite", sans-serif;
     font-size: 24px;
     font-weight: 400;
     white-space: nowrap;
@@ -475,7 +471,7 @@ body {
     border: 3px solid rgba(255, 215, 0, 0.6);
     background-color: rgba(26, 2, 44, 0.8);
     color: #ffd700;
-    font-family: "Updock", cursive;
+    font-family: "Overbite", sans-serif;
     font-size: 26px;
     cursor: pointer;
     display: flex;

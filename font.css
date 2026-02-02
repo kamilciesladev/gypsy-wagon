@@ -1,12 +1,25 @@
+@font-face {
+  font-family: "Overbite";
+  src: url('resources/overbite-font/Overbite-BF670d2c14becd8.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Overbite Swash";
+  src: url('resources/overbite-font/Overbite-Swash-BF670d2c1434019.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
-  font-family: "Updock", cursive !important;
+  font-family: "Overbite", sans-serif !important;
   font-weight: 400 !important;
   font-style: normal;
 }
 
-.updock-regular {
-  font-family: "Updock", cursive !important;
+.overbite-regular {
+  font-family: "Overbite", sans-serif !important;
   font-weight: 400 !important;
   font-style: normal;
 }
