@@ -1,0 +1,391 @@
+/* ===== INSIDE HOTSPOTS ===== */
+.inside-hotspots {
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+.inside-hotspots.visible {
+    display: block;
+}
+
+.hotspot {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    background-color: rgba(26, 2, 44, 0.8);
+    color: var(--primary-color);
+    font-family: "Overbite", sans-serif;
+    font-size: 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    pointer-events: auto;
+    transform: translate(var(--tx, 0), var(--ty, 0));
+}
+
+.hotspot:hover {
+    transform: translate(var(--tx, 0), var(--ty, 0)) scale(1.08);
+}
+
+.hotspot--top {
+    top: 15%;
+    left: 50%;
+    --tx: -50%;
+    --ty: -50%;
+}
+
+.hotspot--left {
+    bottom: 20%;
+    left: 25%;
+    --tx: -50%;
+    --ty: 50%;
+}
+
+.hotspot--picture {
+    top: 60%;
+    left: 50%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--picture:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--candle {
+    top: 67%;
+    left: 57%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--candle:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--mask {
+    top: 44%;
+    right: 23%;
+    left: auto;
+    --tx: 50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--mask:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--futrzasta {
+    top: 45%;
+    left: 50%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--futrzasta:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--trawa {
+    top: 92%;
+    left: 50%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--trawa:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--hiena {
+    top: 73%;
+    left: 58%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--hiena:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--apple {
+    top: 50%;
+    left: 30%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--apple:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--doll-hand {
+    top: 78%;
+    left: 27%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--doll-hand:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--lashes {
+    top: 55%;
+    left: 72%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--lashes:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--sofa {
+    top: 73%;
+    left: 40%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--sofa:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--writing {
+    top: 25%;
+    left: 60%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--writing:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--spiral {
+    top: 80%;
+    left: 38%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--spiral:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--duck {
+    top: 57%;
+    left: 69%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--duck:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--sunflower {
+    top: 30%;
+    left: 25%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--sunflower:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--egg-cage {
+    top: 50%;
+    left: 80%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--egg-cage:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--green-eye {
+    top: 60%;
+    left: 37%;
+    --tx: -50%;
+    --ty: -50%;
+    width: 80px;
+    height: 80px;
+    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    font-size: 0;
+    color: transparent;
+}
+
+.hotspot--green-eye:hover {
+    transform: translate(var(--tx), var(--ty)) scale(1.2);
+}
+
+.hotspot--right {
+    bottom: 20%;
+    right: 25%;
+    --tx: 50%;
+    --ty: 50%;
+}

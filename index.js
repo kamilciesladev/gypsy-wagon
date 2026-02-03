@@ -224,9 +224,85 @@ function toggleInsideHotspots(visible) {
     
     // Show/hide specific hotspots based on current view
     const pictureHotspot = document.getElementById('picture-hotspot');
+    const candleHotspot = document.getElementById('candle-hotspot');
+    const maskHotspot = document.getElementById('mask-hotspot');
+    const futrzastaHotspot = document.getElementById('futrzasta-hotspot');
+    const trawaHotspot = document.getElementById('trawa-hotspot');
+    const hienaHotspot = document.getElementById('hiena-hotspot');
+    const appleHotspot = document.getElementById('apple-hotspot');
+    const dollHandHotspot = document.getElementById('doll-hand-hotspot');
+    const lashesHotspot = document.getElementById('lashes-hotspot');
+    const sofaHotspot = document.getElementById('sofa-hotspot');
+    const writingHotspot = document.getElementById('writing-hotspot');
+    const spiralHotspot = document.getElementById('spiral-hotspot');
+    const duckHotspot = document.getElementById('duck-hotspot');
+    const sunflowerHotspot = document.getElementById('sunflower-hotspot');
+    const eggCageHotspot = document.getElementById('egg-cage-hotspot');
+    const greenEyeHotspot = document.getElementById('green-eye-hotspot');
+    
     if (pictureHotspot && visible) {
         // Only show picture hotspot on INSIDE_FRONT view
         pictureHotspot.style.display = (currentInsideViewIndex === 0) ? 'flex' : 'none';
+    }
+    if (candleHotspot && visible) {
+        // Only show candle hotspot on INSIDE_FRONT view
+        candleHotspot.style.display = (currentInsideViewIndex === 0) ? 'flex' : 'none';
+    }
+    if (maskHotspot && visible) {
+        // Only show mask hotspot on INSIDE_FRONT view
+        maskHotspot.style.display = (currentInsideViewIndex === 0) ? 'flex' : 'none';
+    }
+    if (futrzastaHotspot && visible) {
+        // Only show futrzasta hotspot on INSIDE_RIGHT view
+        futrzastaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    }
+    if (trawaHotspot && visible) {
+        // Only show trawa hotspot on INSIDE_RIGHT view
+        trawaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    }
+    if (hienaHotspot && visible) {
+        // Only show hiena hotspot on INSIDE_RIGHT view
+        hienaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    }
+    if (appleHotspot && visible) {
+        // Only show apple hotspot on INSIDE_RIGHT view
+        appleHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    }
+    if (dollHandHotspot && visible) {
+        // Only show doll-hand hotspot on INSIDE_RIGHT view
+        dollHandHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    }
+    if (lashesHotspot && visible) {
+        // Only show lashes hotspot on INSIDE_RIGHT view
+        lashesHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    }
+    if (sofaHotspot && visible) {
+        // Only show sofa hotspot on INSIDE_RIGHT view
+        sofaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    }
+    if (writingHotspot && visible) {
+        // Only show writing hotspot on INSIDE_BACK view
+        writingHotspot.style.display = (currentInsideViewIndex === 2) ? 'flex' : 'none';
+    }
+    if (spiralHotspot && visible) {
+        // Only show spiral hotspot on INSIDE_LEFT view
+        spiralHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    }
+    if (duckHotspot && visible) {
+        // Only show duck hotspot on INSIDE_LEFT view
+        duckHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    }
+    if (sunflowerHotspot && visible) {
+        // Only show sunflower hotspot on INSIDE_LEFT view
+        sunflowerHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    }
+    if (eggCageHotspot && visible) {
+        // Only show egg-cage hotspot on INSIDE_LEFT view
+        eggCageHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    }
+    if (greenEyeHotspot && visible) {
+        // Only show green-eye hotspot on INSIDE_LEFT view
+        greenEyeHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
     }
 }
 
@@ -289,14 +365,22 @@ if (pictureHotspot) {
 // }
 
 // Start screen click handler
+// TEMPORARY: Disabled for debugging - uncomment to re-enable start screen
+// if (startScreen) {
+//     startScreen.addEventListener('click', () => {
+//         startScreen.classList.add('hidden');
+//         setTimeout(() => {
+//             startScreen.style.display = 'none';
+//         }, 1000);
+//     });
+// }
+
+// TEMPORARY: Hide start screen immediately for debugging
 if (startScreen) {
-    startScreen.addEventListener('click', () => {
-        startScreen.classList.add('hidden');
-        setTimeout(() => {
-            startScreen.style.display = 'none';
-        }, 1000);
-    });
+    startScreen.style.display = 'none';
 }
 
 // ===== INITIALIZATION =====
-showView(1); // Start from RIGHT view (index 1)
+// TEMPORARY: Start from inside front view for testing
+isInside = true;
+showInsideView(0);
