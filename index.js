@@ -252,7 +252,6 @@ function toggleInsideHotspots(visible) {
     const dollHandHotspot = document.getElementById('doll-hand-hotspot');
     const lashesHotspot = document.getElementById('lashes-hotspot');
     const sofaHotspot = document.getElementById('sofa-hotspot');
-    const writingHotspot = document.getElementById('writing-hotspot');
     const spiralHotspot = document.getElementById('spiral-hotspot');
     const duckHotspot = document.getElementById('duck-hotspot');
     const sunflowerHotspot = document.getElementById('sunflower-hotspot');
@@ -298,10 +297,6 @@ function toggleInsideHotspots(visible) {
     if (sofaHotspot) {
         // Only show sofa hotspot on INSIDE_RIGHT view when visible
         sofaHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
-    }
-    if (writingHotspot) {
-        // Only show writing hotspot on INSIDE_BACK view when visible
-        writingHotspot.style.display = (visible && currentInsideViewIndex === 2) ? 'flex' : 'none';
     }
     if (spiralHotspot) {
         // Only show spiral hotspot on INSIDE_LEFT view when visible
@@ -417,6 +412,62 @@ const trawaHotspot2 = document.getElementById('trawa-hotspot');
 if (trawaHotspot2) {
     trawaHotspot2.addEventListener('click', () => {
         showBoard('resources/images/boards/trawa.png');
+    });
+}
+
+// Futrzasta hotspot - shows board directly
+const futrzastaHotspot2 = document.getElementById('futrzasta-hotspot');
+if (futrzastaHotspot2) {
+    futrzastaHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/futrzasta.png');
+    });
+}
+
+// Maska hotspot - shows board directly
+const maskaHotspot2 = document.getElementById('mask-hotspot');
+if (maskaHotspot2) {
+    maskaHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/maska.png');
+    });
+}
+
+// Candle hotspot - shows board directly
+const candleHotspot2 = document.getElementById('candle-hotspot');
+if (candleHotspot2) {
+    candleHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/candle.png');
+    });
+}
+
+// Hiena hotspot - shows board directly
+const hienaHotspot2 = document.getElementById('hiena-hotspot');
+if (hienaHotspot2) {
+    hienaHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/hiena.png');
+    });
+}
+
+// Doll-hand hotspot - shows board directly
+const dollHandHotspot2 = document.getElementById('doll-hand-hotspot');
+if (dollHandHotspot2) {
+    dollHandHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/doll.png');
+    });
+}
+
+// Apple hotspot - shows board directly
+const appleHotspot2 = document.getElementById('apple-hotspot');
+if (appleHotspot2) {
+    appleHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/apple.png');
+    });
+}
+
+// Sofa hotspot - shows board directly
+const sofaHotspot2 = document.getElementById('sofa-hotspot');
+if (sofaHotspot2) {
+    sofaHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/sofa.png');
     });
 }
 

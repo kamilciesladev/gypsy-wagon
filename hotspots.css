@@ -257,27 +257,6 @@
     transform: translate(var(--tx), var(--ty)) scale(1.2);
 }
 
-.hotspot--writing {
-    top: 25%;
-    left: 60%;
-    --tx: -50%;
-    --ty: -50%;
-    width: 80px;
-    height: 80px;
-    background-image: url('resources/images/wagon-inside/items-inside/hover-eye.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: transparent;
-    border: none;
-    font-size: 0;
-    color: transparent;
-}
-
-.hotspot--writing:hover {
-    transform: translate(var(--tx), var(--ty)) scale(1.2);
-}
-
 .hotspot--spiral {
     top: 80%;
     left: 38%;
