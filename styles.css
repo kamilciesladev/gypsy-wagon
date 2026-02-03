@@ -95,6 +95,33 @@ body {
     opacity: 1;
 }
 
+/* Board overlay - fullscreen image display for hotspot details */
+.board-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.board-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.board-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
 .blink-overlay {
     position: fixed;
     inset: 0;

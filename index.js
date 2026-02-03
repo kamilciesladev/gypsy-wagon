@@ -49,6 +49,8 @@ const insideHotspots = document.getElementById('inside-hotspots');
 const blinkOverlay = document.getElementById('blink-overlay');
 const blurOverlay = document.getElementById('blur-overlay');
 const startScreen = document.getElementById('start-screen');
+const boardOverlay = document.getElementById('board-overlay');
+const boardImage = document.getElementById('board-image');
 const BLINK_DURATION = 600;
 let isBlinking = false;
 
@@ -214,6 +216,23 @@ function updateArrowsVisibility() {
     }
     
     toggleInsideHotspots(isInside && !isPictureClose);
+    togglePictureCloseHotspots(isPictureClose);
+}
+
+function togglePictureCloseHotspots(visible) {
+    if (!insideHotspots) {
+        return;
+    }
+    
+    const pictureDetailHotspot = document.getElementById('picture-detail-hotspot');
+    if (pictureDetailHotspot) {
+        if (visible) {
+            insideHotspots.classList.add('visible');
+            pictureDetailHotspot.style.display = 'flex';
+        } else {
+            pictureDetailHotspot.style.display = 'none';
+        }
+    }
 }
 
 function toggleInsideHotspots(visible) {
@@ -240,69 +259,69 @@ function toggleInsideHotspots(visible) {
     const eggCageHotspot = document.getElementById('egg-cage-hotspot');
     const greenEyeHotspot = document.getElementById('green-eye-hotspot');
     
-    if (pictureHotspot && visible) {
-        // Only show picture hotspot on INSIDE_FRONT view
-        pictureHotspot.style.display = (currentInsideViewIndex === 0) ? 'flex' : 'none';
+    if (pictureHotspot) {
+        // Only show picture hotspot on INSIDE_FRONT view when visible
+        pictureHotspot.style.display = (visible && currentInsideViewIndex === 0) ? 'flex' : 'none';
     }
-    if (candleHotspot && visible) {
-        // Only show candle hotspot on INSIDE_FRONT view
-        candleHotspot.style.display = (currentInsideViewIndex === 0) ? 'flex' : 'none';
+    if (candleHotspot) {
+        // Only show candle hotspot on INSIDE_FRONT view when visible
+        candleHotspot.style.display = (visible && currentInsideViewIndex === 0) ? 'flex' : 'none';
     }
-    if (maskHotspot && visible) {
-        // Only show mask hotspot on INSIDE_FRONT view
-        maskHotspot.style.display = (currentInsideViewIndex === 0) ? 'flex' : 'none';
+    if (maskHotspot) {
+        // Only show mask hotspot on INSIDE_FRONT view when visible
+        maskHotspot.style.display = (visible && currentInsideViewIndex === 0) ? 'flex' : 'none';
     }
-    if (futrzastaHotspot && visible) {
-        // Only show futrzasta hotspot on INSIDE_RIGHT view
-        futrzastaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    if (futrzastaHotspot) {
+        // Only show futrzasta hotspot on INSIDE_RIGHT view when visible
+        futrzastaHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
     }
-    if (trawaHotspot && visible) {
-        // Only show trawa hotspot on INSIDE_RIGHT view
-        trawaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    if (trawaHotspot) {
+        // Only show trawa hotspot on INSIDE_RIGHT view when visible
+        trawaHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
     }
-    if (hienaHotspot && visible) {
-        // Only show hiena hotspot on INSIDE_RIGHT view
-        hienaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    if (hienaHotspot) {
+        // Only show hiena hotspot on INSIDE_RIGHT view when visible
+        hienaHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
     }
-    if (appleHotspot && visible) {
-        // Only show apple hotspot on INSIDE_RIGHT view
-        appleHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    if (appleHotspot) {
+        // Only show apple hotspot on INSIDE_RIGHT view when visible
+        appleHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
     }
-    if (dollHandHotspot && visible) {
-        // Only show doll-hand hotspot on INSIDE_RIGHT view
-        dollHandHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    if (dollHandHotspot) {
+        // Only show doll-hand hotspot on INSIDE_RIGHT view when visible
+        dollHandHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
     }
-    if (lashesHotspot && visible) {
-        // Only show lashes hotspot on INSIDE_RIGHT view
-        lashesHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    if (lashesHotspot) {
+        // Only show lashes hotspot on INSIDE_RIGHT view when visible
+        lashesHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
     }
-    if (sofaHotspot && visible) {
-        // Only show sofa hotspot on INSIDE_RIGHT view
-        sofaHotspot.style.display = (currentInsideViewIndex === 1) ? 'flex' : 'none';
+    if (sofaHotspot) {
+        // Only show sofa hotspot on INSIDE_RIGHT view when visible
+        sofaHotspot.style.display = (visible && currentInsideViewIndex === 1) ? 'flex' : 'none';
     }
-    if (writingHotspot && visible) {
-        // Only show writing hotspot on INSIDE_BACK view
-        writingHotspot.style.display = (currentInsideViewIndex === 2) ? 'flex' : 'none';
+    if (writingHotspot) {
+        // Only show writing hotspot on INSIDE_BACK view when visible
+        writingHotspot.style.display = (visible && currentInsideViewIndex === 2) ? 'flex' : 'none';
     }
-    if (spiralHotspot && visible) {
-        // Only show spiral hotspot on INSIDE_LEFT view
-        spiralHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    if (spiralHotspot) {
+        // Only show spiral hotspot on INSIDE_LEFT view when visible
+        spiralHotspot.style.display = (visible && currentInsideViewIndex === 3) ? 'flex' : 'none';
     }
-    if (duckHotspot && visible) {
-        // Only show duck hotspot on INSIDE_LEFT view
-        duckHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    if (duckHotspot) {
+        // Only show duck hotspot on INSIDE_LEFT view when visible
+        duckHotspot.style.display = (visible && currentInsideViewIndex === 3) ? 'flex' : 'none';
     }
-    if (sunflowerHotspot && visible) {
-        // Only show sunflower hotspot on INSIDE_LEFT view
-        sunflowerHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    if (sunflowerHotspot) {
+        // Only show sunflower hotspot on INSIDE_LEFT view when visible
+        sunflowerHotspot.style.display = (visible && currentInsideViewIndex === 3) ? 'flex' : 'none';
     }
-    if (eggCageHotspot && visible) {
-        // Only show egg-cage hotspot on INSIDE_LEFT view
-        eggCageHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    if (eggCageHotspot) {
+        // Only show egg-cage hotspot on INSIDE_LEFT view when visible
+        eggCageHotspot.style.display = (visible && currentInsideViewIndex === 3) ? 'flex' : 'none';
     }
-    if (greenEyeHotspot && visible) {
-        // Only show green-eye hotspot on INSIDE_LEFT view
-        greenEyeHotspot.style.display = (currentInsideViewIndex === 3) ? 'flex' : 'none';
+    if (greenEyeHotspot) {
+        // Only show green-eye hotspot on INSIDE_LEFT view when visible
+        greenEyeHotspot.style.display = (visible && currentInsideViewIndex === 3) ? 'flex' : 'none';
     }
 }
 
@@ -315,6 +334,27 @@ function showArrow(arrowElement) {
 function hideArrow(arrowElement) {
     arrowElement.classList.remove('visible');
     arrowElement.classList.add('hidden');
+}
+
+// ===== BOARD OVERLAY FUNCTIONS =====
+function showBoard(imagePath) {
+    if (!boardOverlay || !boardImage) return;
+    
+    boardImage.src = imagePath;
+    boardOverlay.style.display = 'flex';
+    // Small delay to trigger transition
+    setTimeout(() => {
+        boardOverlay.classList.add('visible');
+    }, 10);
+}
+
+function hideBoard() {
+    if (!boardOverlay) return;
+    
+    boardOverlay.classList.remove('visible');
+    setTimeout(() => {
+        boardOverlay.style.display = 'none';
+    }, 300); // Match CSS transition duration
 }
 
 // ===== EVENT LISTENERS =====
@@ -363,6 +403,27 @@ if (pictureHotspot) {
 //         subtitleOverlay.classList.remove('visible');
 //     });
 // }
+
+// Picture detail hotspot - shows board
+const pictureDetailHotspot = document.getElementById('picture-detail-hotspot');
+if (pictureDetailHotspot) {
+    pictureDetailHotspot.addEventListener('click', () => {
+        showBoard('resources/images/boards/picture.png');
+    });
+}
+
+// Trawa hotspot - shows board directly
+const trawaHotspot2 = document.getElementById('trawa-hotspot');
+if (trawaHotspot2) {
+    trawaHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/trawa.png');
+    });
+}
+
+// Board overlay click handler - close on click (temporary)
+if (boardOverlay) {
+    boardOverlay.addEventListener('click', hideBoard);
+}
 
 // Start screen click handler
 // TEMPORARY: Disabled for debugging - uncomment to re-enable start screen
