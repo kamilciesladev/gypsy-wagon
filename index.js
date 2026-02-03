@@ -534,22 +534,14 @@ if (boardOverlay) {
 }
 
 // Start screen click handler
-// TEMPORARY: Disabled for debugging - uncomment to re-enable start screen
-// if (startScreen) {
-//     startScreen.addEventListener('click', () => {
-//         startScreen.classList.add('hidden');
-//         setTimeout(() => {
-//             startScreen.style.display = 'none';
-//         }, 1000);
-//     });
-// }
-
-// TEMPORARY: Hide start screen immediately for debugging
 if (startScreen) {
-    startScreen.style.display = 'none';
+    startScreen.addEventListener('click', () => {
+        startScreen.classList.add('hidden');
+        setTimeout(() => {
+            startScreen.style.display = 'none';
+        }, 1000);
+    });
 }
 
 // ===== INITIALIZATION =====
-// TEMPORARY: Start from inside front view for testing
-isInside = true;
-showInsideView(0);
+showView(1); // Start with FRONT view of wagon
