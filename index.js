@@ -495,6 +495,30 @@ if (duckHotspot2) {
     });
 }
 
+// Green eye hotspot - shows board directly
+const greenEyeHotspot2 = document.getElementById('green-eye-hotspot');
+if (greenEyeHotspot2) {
+    greenEyeHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/green-eye.png');
+    });
+}
+
+// Egg cage hotspot - shows board directly
+const eggCageHotspot2 = document.getElementById('egg-cage-hotspot');
+if (eggCageHotspot2) {
+    eggCageHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/egg-cage.png');
+    });
+}
+
+// Spiral hotspot - shows board directly
+const spiralHotspot2 = document.getElementById('spiral-hotspot');
+if (spiralHotspot2) {
+    spiralHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/spiral.png');
+    });
+}
+
 // Board close button - click X to close
 const boardCloseBtn = document.getElementById('board-close');
 if (boardCloseBtn) {

@@ -2,10 +2,7 @@
 
 ## Hotspots without boards yet:
 
-### INSIDE_LEFT (View 3)
-- [ ] **spiral** - spirala
-- [ ] **egg-cage** - klatka z jajkiem
-- [ ] **green-eye** - zielone oko
+*All boards completed! 🎉*
 
 ---
 
@@ -22,3 +19,6 @@
 ✓ lashes (INSIDE_RIGHT)
 ✓ sunflower (INSIDE_LEFT)
 ✓ duck (INSIDE_LEFT)
+✓ green-eye (INSIDE_LEFT)
+✓ egg-cage (INSIDE_LEFT)
+✓ spiral (INSIDE_LEFT)
