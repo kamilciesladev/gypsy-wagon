@@ -2,13 +2,8 @@
 
 ## Hotspots without boards yet:
 
-### INSIDE_RIGHT (View 1)
-- [ ] **lashes** - rzęsy
-
 ### INSIDE_LEFT (View 3)
 - [ ] **spiral** - spirala
-- [ ] **duck** - kaczka
-- [ ] **sunflower** - słonecznik
 - [ ] **egg-cage** - klatka z jajkiem
 - [ ] **green-eye** - zielone oko
 
@@ -24,3 +19,6 @@
 ✓ doll-hand (INSIDE_RIGHT)
 ✓ apple (INSIDE_RIGHT)
 ✓ sofa (INSIDE_RIGHT)
+✓ lashes (INSIDE_RIGHT)
+✓ sunflower (INSIDE_LEFT)
+✓ duck (INSIDE_LEFT)

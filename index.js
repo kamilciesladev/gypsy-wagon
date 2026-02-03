@@ -471,7 +471,40 @@ if (sofaHotspot2) {
     });
 }
 
-// Board overlay click handler - close on click (temporary)
+// Lashes hotspot - shows board directly
+const lashesHotspot2 = document.getElementById('lashes-hotspot');
+if (lashesHotspot2) {
+    lashesHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/lashes.png');
+    });
+}
+
+// Sunflower hotspot - shows board directly
+const sunflowerHotspot2 = document.getElementById('sunflower-hotspot');
+if (sunflowerHotspot2) {
+    sunflowerHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/sunflower.png');
+    });
+}
+
+// Duck hotspot - shows board directly
+const duckHotspot2 = document.getElementById('duck-hotspot');
+if (duckHotspot2) {
+    duckHotspot2.addEventListener('click', () => {
+        showBoard('resources/images/boards/duck.png');
+    });
+}
+
+// Board close button - click X to close
+const boardCloseBtn = document.getElementById('board-close');
+if (boardCloseBtn) {
+    boardCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hideBoard();
+    });
+}
+
+// Board overlay click handler - close on click anywhere
 if (boardOverlay) {
     boardOverlay.addEventListener('click', hideBoard);
 }
