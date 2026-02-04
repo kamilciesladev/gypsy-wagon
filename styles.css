@@ -4,7 +4,7 @@
     --arrow-bottom: 20px;
     --arrow-side-offset: 20px;
     --arrow-font-size: 48px;
-    --primary-color: yellow;
+    --primary-color: rgba(252, 199, 76, 0.811);
     --bg-color-1: #1d022c;
     --bg-color-2: #074044;
     --bg-color-3: #2b0428;
@@ -361,7 +361,8 @@ body {
 }
 
 .arrow-up {
-    left: 50%;
+    top:70%;
+    left: 52%;
     transform: translateX(-50%);
     display: none;
 }
